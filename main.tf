@@ -1,6 +1,6 @@
 resource "tfe_organization" "org" {
   name  = var.name
-  email = "nobody@example.com"
+  email = var.email
 }
 
 resource "tfe_oauth_client" "github" {
