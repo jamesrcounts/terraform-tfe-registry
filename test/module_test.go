@@ -1,6 +1,7 @@
 package test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -18,9 +19,7 @@ func TestWorkspace(t *testing.T) {
 
 	actualName := terraform.Output(t, terraformOptions, "name")
 	actualOauthUrl := terraform.Output(t, terraformOptions, "oauth_http_url")
-	actualSecretName := terraform.Output(t, terraformOptions, "my_secret_name")
 
-	assert.Equal(t, "ws-test", actualName)
+	assert.True(t, strings.HasPrefix(actualName, "org-test"))
 	assert.Equal(t, "https://github.com", actualOauthUrl)
-	assert.Equal(t, "MY_SECRET", actualSecretName)
 }
