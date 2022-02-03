@@ -16,7 +16,7 @@ data "tfe_organization" "test_org" {
 }
 
 data "tfe_oauth_client" "client" {
-  oauth_client_id = module.test_org.oauth_client_id
+  oauth_client_id = module.test_org.github_client_id
 }
 
 output "name" {
@@ -29,4 +29,9 @@ output "email" {
 
 output "oauth_http_url" {
   value = data.tfe_oauth_client.client.http_url
+}
+
+# Module should export this directly
+output "oauth_token_id" {
+  value = module.test_org.github_token_id
 }
