@@ -1,11 +1,10 @@
 package test
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
+	// "github.com/stretchr/testify/assert"
 )
 
 func TestWorkspace(t *testing.T) {
@@ -17,11 +16,6 @@ func TestWorkspace(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	actualName := terraform.Output(t, terraformOptions, "name")
-	actualEmail := terraform.Output(t, terraformOptions, "email")
-	actualOauthUrl := terraform.Output(t, terraformOptions, "oauth_http_url")
-
-	assert.True(t, strings.HasPrefix(actualName, "org-test"))
-	assert.Equal(t, "somebody@example.com", actualEmail)
-	assert.Equal(t, "https://github.com", actualOauthUrl)
+	// TFE provider doesn't provide a data source for modules today, figure out how to
+	// use the API to validate.
 }

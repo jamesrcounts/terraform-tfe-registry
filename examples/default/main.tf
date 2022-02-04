@@ -25,8 +25,8 @@ module "test_registry" {
 
   oauth_token_id = tfe_oauth_client.github.oauth_token_id
 
-  // modules = {
-  //   organization= "jamesrcounts/terraform-tfe-organization"
-  //   workspace="jamesrcounts/terraform-tfe-workspace"
-  // }
+  modules = {
+    organization = "jamesrcounts/terraform-tfe-organization"
+    workspace    = "jamesrcounts/terraform-tfe-workspace"
+  }
 }
