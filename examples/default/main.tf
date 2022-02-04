@@ -1,37 +1,32 @@
 resource "random_pet" "project" {
 }
 
-module "test_org" {
-  source = "../../"
-
-  name       = "org-test-${random_pet.project.id}"
-  email      = "somebody@example.com"
-  github_pat = var.github_pat
+resource "tfe_organization" "org" {
+  name  = "org-test-${random_pet.project.id}"
+  email = "nobody@example.com"
 }
 
-data "tfe_organization" "test_org" {
-  depends_on = [module.test_org]
-
-  name = module.test_org.name
+resource "tfe_oauth_client" "github" {
+  organization     = tfe_organization.org.name
+  api_url          = "https://api.github.com"
+  http_url         = "https://github.com"
+  oauth_token      = var.github_pat
+  service_provider = "github"
 }
 
-data "tfe_oauth_client" "client" {
-  oauth_client_id = module.test_org.github_client_id
+resource "tfe_workspace" "ws" {
+  name         = random_pet.project.id
+  organization = tfe_organization.org.name
+  tag_names    = []
 }
 
-output "name" {
-  value = data.tfe_organization.test_org.name
-}
+module "test_registry" {
+  source = "../.."
 
-output "email" {
-  value = data.tfe_organization.test_org.email
-}
+  oauth_token_id = tfe_oauth_client.github.oauth_token_id
 
-output "oauth_http_url" {
-  value = data.tfe_oauth_client.client.http_url
-}
-
-# Module should export this directly
-output "oauth_token_id" {
-  value = module.test_org.github_token_id
+  // modules = {
+  //   organization= "jamesrcounts/terraform-tfe-organization"
+  //   workspace="jamesrcounts/terraform-tfe-workspace"
+  // }
 }

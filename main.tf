@@ -1,12 +1,7 @@
-resource "tfe_organization" "org" {
-  name  = var.name
-  email = var.email
-}
-
-resource "tfe_oauth_client" "github" {
-  organization     = tfe_organization.org.name
-  api_url          = "https://api.github.com"
-  http_url         = "https://github.com"
-  oauth_token      = var.github_pat
-  service_provider = "github"
+resource "tfe_registry_module" "module" {
+  vcs_repo {
+    display_identifier = "my-org-name/terraform-provider-name"
+    identifier         = "my-org-name/terraform-provider-name"
+    oauth_token_id     = var.oauth_token_id
+  }
 }
