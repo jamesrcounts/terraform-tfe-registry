@@ -2,6 +2,8 @@ module github.com/jamesrcounts/terraform-tfe-workspace
 
 go 1.17
 
+require github.com/gruntwork-io/terratest v0.39.0
+
 require (
 	cloud.google.com/go v0.83.0 // indirect
 	cloud.google.com/go/storage v1.10.0 // indirect
@@ -14,7 +16,6 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
-	github.com/gruntwork-io/terratest v0.39.0 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-getter v1.5.9 // indirect
@@ -42,7 +43,7 @@ require (
 	golang.org/x/mod v0.4.2 // indirect
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
 	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c // indirect
-	golang.org/x/sys v0.0.0-20210603125802-9665404d3644 // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.3.6 // indirect
 	golang.org/x/tools v0.1.2 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
